@@ -3,13 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test-with-report": "npx playwright test && npx allure generate allure-results -o allure-report --clean",
+    "mcp-server": "npx @playwright/mcp",
+    "docker-build": "docker build -t playwright-mcp .",
+    "docker-run": "docker run --rm -v $(pwd)/allure-report:/app/allure-report playwright-mcp"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.54.2",
+    "@playwright/mcp": "latest",
     "@types/node": "^24.2.0",
     "allure-commandline": "^2.34.1"
   },

@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  playwright-tests:
+    build: .
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
+      - ./test-results:/app/test-results
+    environment:
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+      - CI=true
+    command: npm run test-with-report
+
+  playwright-mcp-server:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
+    environment:
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    command: npx @playwright/mcp
+    profiles:
+      - mcp
+
+  playwright-interactive:
+    build: .
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
+      - ./tests:/app/tests
+    environment:
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    profiles:
+      - interactive

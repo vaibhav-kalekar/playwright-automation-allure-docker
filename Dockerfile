@@ -21,7 +21,13 @@ COPY . .
 # Create directories for Allure results
 RUN mkdir -p allure-results allure-report
 
-# Run tests and generate report
+# Expose port for MCP server (if needed for external access)
+EXPOSE 3000
+
+# Set environment variable for headless mode in Docker
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+# Default command - can be overridden
 CMD npx playwright test && \
     npx allure generate allure-results -o allure-report --clean
 
