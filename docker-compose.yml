@@ -10,7 +10,7 @@ services:
     environment:
       - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
       - CI=true
-    command: npm run test-with-report
+    command: npx playwright test && npx allure generate allure-results -o allure-report --clean
 
   playwright-mcp-server:
     build: .

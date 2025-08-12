@@ -16,3 +16,12 @@ test('get started link', async ({ page }) => {
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 });
+
+test('MCP test example', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+
+  await page.getByRole('link', { name: 'API' }).click();
+
+  // Expects page to have a heading with the name of Playwright Library.
+  await expect(page.getByRole('heading', { name: 'Playwright Library' })).toBeVisible();
+  });

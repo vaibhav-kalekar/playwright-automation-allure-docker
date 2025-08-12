@@ -7,8 +7,8 @@
     "test": "npx playwright test",
     "test-with-report": "npx playwright test && npx allure generate allure-results -o allure-report --clean",
     "mcp-server": "npx @playwright/mcp",
-    "docker-build": "docker build -t playwright-mcp .",
-    "docker-run": "docker run --rm -v $(pwd)/allure-report:/app/allure-report playwright-mcp"
+    "docker-build": "docker build -t playwright-tests .",
+    "docker-run": "docker run --rm -v $(pwd)/allure-report:/app/allure-report playwright-tests"
   },
   "keywords": [],
   "author": "",
